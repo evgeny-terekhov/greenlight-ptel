@@ -22,6 +22,8 @@ RUN apk update \
 COPY Gemfile* ./
 COPY Gemfile Gemfile.lock $RAILS_ROOT/
 
+RUN update-ca-certificates
+
 RUN bundle config --global frozen 1 \
     && bundle install --deployment --without development:test:assets -j4 --path=vendor/bundle \
     && rm -rf vendor/bundle/ruby/2.5.0/cache/*.gem \
